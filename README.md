@@ -40,99 +40,118 @@ Duco-Project/
 | GET    | /customers  | List all customers  |
 | POST   | /customers  | Add a new customer  |
 
-**Example Request Body:**
+## 📦 CRM API (`http://localhost:3001`)
+
+### Example Request Body:
 ```json
 {
   "name": "Alice",
   "email": "alice@example.com"
 }
-Inventory API (http://localhost:3002)
+```
+
+---
+
+## 📦 Inventory API (`http://localhost:3002`)
+
 | Method | Endpoint  | Description               |
-| ------ | --------- | ------------------------- |
+|--------|-----------|---------------------------|
 | GET    | /packages | List all package requests |
 | POST   | /packages | Create a welcome package  |
 
-Example Request Body (used by middleware):
-
-json
-Copy code
+### Example Request Body (used by middleware):
+```json
 {
   "customerId": 1,
   "customerName": "Alice"
 }
-🔁 Integration Flow
-User adds a new customer using the CRM API.
+```
 
-Middleware polls the CRM API every 5 seconds for new customers.
+---
 
-If a new customer is found, the middleware sends their data to the Inventory API.
+## 🔁 Integration Flow
 
-Inventory API creates a new welcome package for the customer.
+- User adds a new customer using the CRM API.
+- Middleware polls the CRM API every 5 seconds for new customers.
+- If a new customer is found, the middleware sends their data to the Inventory API.
+- Inventory API creates a new welcome package for the customer.
+- Console logs confirm each action step.
 
-Console logs confirm each action step.
+---
 
-🔄 Retry Logic
+## 🔄 Retry Logic
+
 The middleware includes simple retry logic:
 
-If a request to the Inventory API fails, the middleware retries once after a 1-second delay.
+- If a request to the Inventory API fails, the middleware retries once after a 1-second delay.
+- This helps handle temporary network or API issues without stopping the process.
 
-This helps handle temporary network or API issues without stopping the process.
+---
 
-☁️ Cloud Awareness (Theory)
-This middleware logic can be deployed as a serverless function using AWS Lambda:
+## ☁️ Cloud Awareness (Theory)
 
-AWS Lambda allows backend code to run without provisioning servers.
+This middleware logic can be deployed as a serverless function using **AWS Lambda**:
 
-The CRM can trigger a Lambda function (via webhook) when a new customer is created.
+- AWS Lambda allows backend code to run without provisioning servers.
+- The CRM can trigger a Lambda function (via webhook) when a new customer is created.
+- Lambda can then send the customer info to the Inventory API.
+- This makes the setup scalable and cost-effective.
 
-Lambda can then send the customer info to the Inventory API.
+---
 
-This makes the setup scalable and cost-effective.
+## 📌 How to Run the Project
 
-📌 How to Run the Project
-Step 1 – Start CRM API
+### Step 1 – Start CRM API
+```bash
 cd crm
 node index.js
+```
 
-Step 2 – Start Inventory API
-bash
-Copy code
+### Step 2 – Start Inventory API
+```bash
 cd inventory
 node index.js
+```
 
-Step 3 – Start Middleware
-bash
-Copy code
+### Step 3 – Start Middleware
+```bash
 cd middleware
 node index.js
-Step 4 – Test the Flow
-Open Thunder Client or Postman.
+```
 
-Make a POST request to:
+---
 
-bash
-Copy code
+## ✅ Test the Flow
+
+Use **Thunder Client** or **Postman**:
+
+### Send a `POST` request to:
+```
 http://localhost:3001/customers
-With JSON body:
+```
 
-json
-Copy code
+**Body:**
+```json
 {
   "name": "Alice",
   "email": "alice@example.com"
 }
-Wait for 5–10 seconds.
+```
 
-Send a GET request to:
+Wait 5–10 seconds.
 
-bash
-Copy code
+### Send a `GET` request to:
+```
 http://localhost:3002/packages
+```
+
 You should see a package created for Alice.
 
-🧱 Architecture Diagram (ASCII)
-css
-Copy code
+---
+
+## 🧱 Architecture Diagram (ASCII)
+
+```
 [ Thunder Client / Postman ]
             ↓
          [ CRM API ]
@@ -140,19 +159,24 @@ Copy code
      [ Middleware Polling ]
             ↓
      [ Inventory API ]
-🧠 What I Learned
-Through this project, I learned and practiced:
+```
 
-Creating REST APIs using Express
+---
 
-Integrating two systems via middleware
+## 🧠 What I Learned
 
-Polling and retry logic
+- Creating REST APIs using Express
+- Integrating two systems via middleware
+- Polling and retry logic
+- Theoretical understanding of serverless functions like AWS Lambda
 
-Theoretical understanding of serverless functions like AWS Lambda
+---
 
-👩‍💻 Author
-Sitambhra
+## 👩‍💻 Author
+
+**Sitambhra**  
+ 
+
 
 
 
