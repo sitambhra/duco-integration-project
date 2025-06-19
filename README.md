@@ -45,8 +45,8 @@ Duco-Project/
 ### Example Request Body:
 ```json
 {
-  "name": "Alice",
-  "email": "alice@example.com"
+  "name": "Sitambhra",
+  "email": "sitambhra@example.com"
 }
 ```
 
@@ -63,7 +63,7 @@ Duco-Project/
 ```json
 {
   "customerId": 1,
-  "customerName": "Alice"
+  "customerName": "Sitambhra"
 }
 ```
 
@@ -160,17 +160,6 @@ You should see a package created for Alice.
             ↓
      [ Inventory API ]
 ```
-
----
-
-## 🧠 What I Learned
-
-- Creating REST APIs using Express
-- Integrating two systems via middleware
-- Polling and retry logic
-- Theoretical understanding of serverless functions like AWS Lambda
-
----
 
 ## 👩‍💻 Author
 
