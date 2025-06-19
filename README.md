@@ -1,4 +1,4 @@
- # 🧩 Mini Integration Platform – Duco Pre-Interview Project
+ # 🧩 Mini Integration Platform 
 
 This project demonstrates a lightweight integration between two mock systems — a **CRM (Customer Relationship Management)** system and an **Inventory** system — using REST APIs and a simple middleware polling service.
 
