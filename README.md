@@ -21,12 +21,13 @@ When a new customer is added to the CRM, a corresponding "welcome package" reque
 ---
 
 ## 📁 Project Structure
+```
 Duco-Project/
 ├── crm/ → REST API to manage customers
 ├── inventory/ → REST API to manage package requests
 ├── middleware/ → Integration logic between CRM and Inventory
 └── README.md → Project documentation
-
+```
 
 ---
 
